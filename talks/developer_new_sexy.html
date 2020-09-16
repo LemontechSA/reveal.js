@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Developer is the new Sexy - Lemontech</title>
+  <meta name="description" content="Presentación de laravel para Lemontech">
+  <meta name="author" content="Vladimir Zurita <vzurita@lemontech.com<">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+
+  <style type="text/css">
+    .lemon {
+      color: #5eb130;
+    }
+
+    .big {
+      font-size: 1.4em !important;
+    }
+
+    .reveal .progress span {
+      background: #5eb130;
+    }
+
+    .reveal .controls div.navigate-right,
+    .reveal .controls div.navigate-right.enabled {
+      border-left-color: #5eb130;
+    }
+
+    .reveal .controls div.navigate-left,
+    .reveal .controls div.navigate-left.enabled {
+      border-right-color: #5eb130;
+    }
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <img src="../img/lemontech.png" style="border: none; background: none; box-shadow: none" />
+      </section>
+
+      <section>
+        <img src="../img/developer_new_sexy/1.png" style="border: none" />
+      </section>
+
+      <section>
+        <h2>Old paradigm</h2>
+        <iframe class="stretch" src="//www.youtube.com/embed/zmTFikGQOIo" frameborder="0" allowfullscreen></iframe>
+      </section>
+
+      <section>
+        <h2>Old paradigm</h2>
+        <img src="../img/developer_new_sexy/old_ad.png">
+      </section>
+
+      <section>
+        <h2>Actual Need</h2>
+        <iframe class="stretch" src="//www.youtube.com/embed/Q0z-C8Ke2FQ" frameborder="0" allowfullscreen></iframe>
+      </section>
+
+      <section>
+        <h2>Actual Need</h2>
+        <img src="../img/developer_new_sexy/new_ad.png">
+      </section>
+
+      <section>
+        <h2>Actual Need</h2>
+        <img src="../img/developer_new_sexy/new_ad_cl.png">
+      </section>
+
+      <section>
+        <h1>We need more <br /> Developers</h1>
+      </section>
+
+      <section>
+        <h1>but...</h1>
+      </section>
+
+      <section>
+        <h1>We need <br /> Professional <br /> Developers</h1>
+      </section>
+
+      <section>
+        <h1>We need <br /> <b class="lemon">COOL</b> <br /> Developers</h1>
+      </section>
+
+      <section>
+        <h2>A <b class="lemon">COOL</b> developer is:</h2>
+        <pre class="fragment big" data-fragment-index="1">            <b class="lemon">C</b>lever</pre>
+        <pre class="fragment big" data-fragment-index="2">     Great C<b class="lemon">O</b>der</pre>
+        <pre class="fragment big" data-fragment-index="3">Get things d<b class="lemon">O</b>ne</pre>
+        <pre class="fragment big" data-fragment-index="4">     You'll <b class="lemon">L</b>ike to work with</pre>
+      </section>
+
+      <section>
+        <h1><b class="lemon">C</b>lever</h1>
+      </section>
+
+      <section>
+        <h1>University helps but...</h1>
+        <h2 class="fragment">The street helps more!</h2>
+      </section>
+
+      <section>
+        <h1>A few tips</h1>
+        <ul>
+          <li class="fragment">
+            Participate in programming challenges<br />
+            <em class="fragment lemon">ACM, TopCoder, Google Codejam</em>
+          </li>
+          <li class="fragment">
+            Work in an open source project<br />
+            <em class="fragment lemon">github.com, Google SoC</em>
+          </li>
+          <li class="fragment">
+            Try to solve real life problems<br />
+            <em class="fragment lemon">Interships, hack4good.io</em>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Great c<b class="lemon">O</b>der</h1>
+      </section>
+
+      <section>
+        <img src="../img/developer_new_sexy/2.png" style="border: none" />
+      </section>
+
+      <section>
+        <h2>Coding conventions</h2>
+        <p>Naming, functions, comments, formatting</p>
+        <pre><code class="javascript">
+var shuffle =  function(v) {
+  for (var j, x, i = v.length; i; j = parseInt(Math.random() * i), x = v[--i], v[i] = v[j], v[j] = x);
+  return v;
+};
+          </code></pre>
+      </section>
+
+      <section>
+        <h2>Coding conventions</h2>
+        <p>Naming, functions, comments, formatting</p>
+        <pre><code class="javascript">
+/**
+ * Simple shuffle algorithm for arrays
+ * @param items Array
+ */
+var shuffle =  function(items) {
+  var seed, x, i;
+  for (i = items.length; i > 0; i--) {
+    seed = parseInt(Math.random() * i);
+    // swap items
+    x = items[i], items[i] = items[seed], items[seed] = x;
+  }
+  return items;
+};
+          </code></pre>
+      </section>
+
+      <section>
+        <h2>Testing</h2>
+        <p>SIMPLE, TDD, BDD</p>
+        <pre><code class="ruby">
+describe Discount do
+  describe "When using an existing discount" do
+    subject { create(:valid_discount) }
+
+    it "must update the current stock after being used" do
+      stock = subject.current_stock
+      subject.use.must_equal true
+      subject.current_stock.must_equal (stock - 1)
+    end
+  end
+end
+          </code></pre>
+      </section>
+
+      <section>
+        <h2>Software Engineering</h2>
+        <p>Requirements, design, architechture</p>
+        <ul>
+          <li>User stories</li>
+          <li>Documentation</li>
+          <li>Data Structures</li>
+          <li>OOP design</li>
+          <li>MVC, N-layer, MVP, Client - Server</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Software Craftmanship</h2>
+        <p>The manifesto:</p>
+        <ul>
+          <li class="fragment">Not only working software,<br />
+            <span class="lemon">but also well-crafted software</span>
+          </li>
+          <li class="fragment">Not only responding to change,<br />
+            <span class="lemon">but also steadily adding value</span>
+          </li>
+          <li class="fragment">Not only individuals and interactions,<br />
+            <span class="lemon">but also a community of professionals</span>
+          </li>
+          <li class="fragment">Not only customer collaboration,<br />
+            <span class="lemon">but also productive partnerships</span>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Get things d<b class="lemon">O</b>ne</h1>
+      </section>
+
+      <section>
+        <h2>Trustworthy</h2>
+        <img src="../img/developer_new_sexy/3.png" />
+      </section>
+
+      <section>
+        <h2>Ownership</h2>
+        <img src="../img/developer_new_sexy/4.png" />
+      </section>
+
+      <section>
+        <h2>Business Vision</h2>
+        <img src="../img/developer_new_sexy/5.png" />
+      </section>
+
+      <section>
+        <h1>You'll <b class="lemon">L</b>ike to work with</h1>
+      </section>
+
+      <section>
+        <h2>Team Player</h2>
+        <img src="../img/developer_new_sexy/6.gif" style="width: 75%" />
+      </section>
+
+      <section>
+        <img src="../img/developer_new_sexy/7.gif" style="width: 50%" />
+      </section>
+
+      <section>
+        <h2>Humble</h2>
+        <img src="../img/developer_new_sexy/8.jpg" />
+      </section>
+
+      <section>
+        <h2>Teacher &amp; Apprentice</h2>
+        <iframe class="stretch" src="//www.youtube.com/embed/T10ycFr770g" frameborder="0" allowfullscreen></iframe>
+      </section>
+
+      <section>
+        <img src="../img/developer_new_sexy/1.png" style="border: none" />
+      </section>
+
+      <section>
+        <h1>Questions?</h1>
+      </section>
+
+      <section>
+        <img src="../img/lemontech.png" style="border: none; background: none; box-shadow: none" />
+        <h3 class="fragment"><em>BTW: Looking for an intership?, let's talk</em></h3>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Zend Framework 2 - Lemontech</title>
+  <meta name="description" content="Presentación de vagrant para Lemontech">
+  <meta name="author" content="Marcos Matamala <mmatamala@lemontech.cl>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h1>Zend Framework</h1>
+        <p>
+          <img src="http://framework.zend.com/images/logos/zf2-logo-mark.png" width="300px" />
+        </p>
+      </section>
+      <section>
+        <h1>Symfony 2.5</h1>
+        <p>
+          <a href="http://symfony.com/" target="_blank">http://symfony.com/</a>
+        </p>
+      </section>
+      <section>
+        <h2>Framework</h2>
+        <p>
+          Symfony es un framework PHP de tipo full-stack construido con varios componentes independientes
+        </p>
+        <p><a href="http://symfony.es/que-es-symfony" target="_blank">http://symfony.es/que-es-symfony</a></p>
+      </section>
+      <section>
+        <h2>Caracteristicas</h2>
+        <ul>
+          <li>Licencia MIT de software libre</li>
+          <li>Documentación, Libro, cookbook, Reference, Best Practices</li>
+          <li>Requieren disponer de PHP 5.3.8 o superior.</li>
+          <li>Capifony</li>
+          <li>Composer</li>
+          <li>Dispone de un plan de lanzamientos predecible</li>
+          <li>Dispone de un programa de certificación</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Instalación</h2>
+        <pre>
+                                    <code class="prompt" style="font-size: 1.5em;">curl -LsS http://symfony.com/installer > symfony.phar</code>
+                                </pre>
+      </section>
+      <section>
+        <h2>Crear nuevo proyecto</h2>
+        <pre>
+                                    <code class="prompt" style="font-size: 1.5em;">symfony new blog</code>
+                                </pre>
+        <code>
+
+        </code>
+      </section>
+      <section>
+        <h2>Configuración</h2>
+        <pre>
+                                    <code class="prompt" style="font-size: 1.5em;">app/config/parameters.yml</code>                                    
+                                </pre>
+        <pre><code>
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt
+    debug_toolbar: true
+    debug_redirects: false
+    use_assetic_controller: true
+
+</code></pre>
+      </section>
+      <section>
+        <h2>Crear un bundle</h2>
+        <p>
+          Un bundle no es más que un directorio que almacena todo lo relacionado con una función específica, incluyendo
+          clases PHP, configuración, e incluso hojas de estilo y archivos de Javascript.
+        </p>
+        <pre>
+                                    <code class="prompt" style="font-size: 1.5em;">php app/console generate:bundle</code>
+                                </pre>
+      </section>
+      <section>
+        <h2>Bundle</h2>
+
+        <pre><code class="prompt">
+src/
+└── Limon
+    └── BlogBundle
+        ├── BlogBundle.php
+        ├── Controller
+        │   └── DefaultController.php
+        ├── DependencyInjection
+        │   ├── BlogExtension.php
+        │   └── Configuration.php
+        ├── Resources
+        │   ├── config
+        │   │   └── services.xml
+        │   ├── doc
+        │   │   └── index.rst
+        │   ├── public
+        │   │   ├── css
+        │   │   ├── images
+        │   │   └── js
+        │   ├── translations
+        │   │   └── messages.fr.xlf
+        │   └── views
+        │       └── Default
+        │           └── index.html.twig
+        └── Tests
+            └── Controller
+                └── DefaultControllerTest.php  
+</code>                                  
+                                </pre>
+
+      </section>
+      <section>
+        <h2>Probar</h2>
+        <pre>
+                                    <code class="prompt" style="font-size: 1.5em;">php app/console server:run</code>
+                                </pre>
+      </section>
+      <section>
+        <h2>Crear un controller</h2>
+        <pre>
+                                    <code class="prompt" style="font-size: 1.5em;">php app/console generate:controller</code>
+                                </pre>
+      </section>
+      <section>
+        <h2>Rutas</h2>
+        <p>
+          php, yml, xml, annotation
+        </p>
+        <pre><code class="ruby">
+namespace AppBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
+class BlogController extends Controller
+{
+    /**
+     * @Route("/blog/{slug}")
+     */
+    public function showAction($slug)
+    {
+        // ...
+    }
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Twig</h2>
+        <pre>
+<code class="django">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Symfony!</title>
+    </head>
+    <body>
+        <h1>{{ page_title }}</h1>
+
+        <ul id="navigation">
+            {% for item in navigation %}
+                <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
+</code>
+</pre>
+      </section>
+      <section>
+        <h2>Test</h2>
+        <pre><code class="">
+namespace Acme\DemoBundle\Tests\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class DemoControllerTest extends WebTestCase
+{
+    public function testIndex()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/demo/hello/Fabien');
+
+        $this->assertGreaterThan(
+            0,
+            $crawler->filter('html:contains("Hello Fabien")')->count()
+        );
+    }
+}
+        </code></pre>
+      </section>
+      <section>
+        <h2>Test</h2>
+        <pre><code>phpunit -c app/</code></pre>
+        <pre><code>app/phpunit.xml.dist</code></pre>
+      </section>
+      <section>
+        <h2>Forms</h2>
+        <pre><code>
+class DefaultController extends Controller
+{
+    public function newAction(Request $request)
+    {
+        // create a task and give it some dummy data for this example
+        $task = new Task();
+        $task->setTask('Write a blog post');
+        $task->setDueDate(new \DateTime('tomorrow'));
+
+        $form = $this->createFormBuilder($task)
+            ->add('task', 'text')
+            ->add('dueDate', 'date')
+            ->add('save', 'submit', array('label' => 'Create Task'))
+            ->getForm();
+
+        return $this->render('AcmeTaskBundle:Default:new.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Seguridad</h2>
+        <pre><code class="prompt">
+# app/config/security.yml
+security:
+    firewalls:
+        secured_area:
+            pattern:   ^/
+            anonymous: ~
+            http_basic:
+                realm: "Secured Demo Area"
+
+    access_control:
+        - { path: ^/admin/, roles: ROLE_ADMIN }
+        # Include the following line to also secure the /admin path itself
+        # - { path: ^/admin$, roles: ROLE_ADMIN }
+
+    providers:
+        in_memory:
+            memory:
+                users:
+                    ryan:  { password: ryanpass, roles: 'ROLE_USER' }
+                    admin: { password: kitten, roles: 'ROLE_ADMIN' }
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+</code></pre>
+      </section>
+      <section>
+        <h2>Translations</h2>
+        <pre><code>
+{% trans %}Hello %name%{% endtrans %}
+
+{% transchoice count %}
+    {0} There are no apples|{1} There is one apple|]1,Inf] There are %count% apples
+{% endtranschoice %}
+</code></pre>
+      </section>
+      <section>
+        <h2>Modelo</h2>
+        <ul>
+          <li>Propel ORM (active record pattern)</li>
+          <li>Doctrine ORM (Unit of Work)</li>
+          <li>Doctrine ODM (MongoDB)</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Crear base de datos y schema</h2>
+        <pre>
+                                    <code class="prompt" style="font-size: 1.5em;">php app/console doctrine:database:create</code>
+                                    <code class="prompt" style="font-size: 1.5em;">php app/console doctrine:schema:create </code>
+                                    <code class="prompt" style="font-size: 1.5em;">php app/console d:s:u --dump-sql</code>
+                                </pre>
+      </section>
+      <section>
+        <h2>Crear una entidad</h2>
+        <pre>
+                                      <code class="prompt" style="font-size: 1.5em;">php app/console doctrine:generate:entity</code>
+                                </pre>
+      </section>
+      <section>
+        <h2>Entidad</h2>
+        <p>annotations, yaml, xml</p>
+        <pre>
+                                    <code>
+namespace Acme\StoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="product")
+ */
+class Product
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="decimal", scale=2)
+     */
+    protected $price;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $description;
+}                                    
+                                    </code>
+                               </pre>
+      </section>
+      <section>
+        <h2>Consultas a la DB</h2>
+        <pre><code>
+$repository = $this->getDoctrine()
+    ->getRepository('AcmeStoreBundle:Product');
+
+$query = $repository->createQueryBuilder('p')
+    ->where('p.price > :price')
+    ->setParameter('price', '19.99')
+    ->orderBy('p.price', 'ASC')
+    ->getQuery();
+
+$products = $query->getResult();
+                                
+                                </code></pre>
+      </section>
+      <section>
+        <h2>Doctrine Query Language</h2>
+        <pre><code>
+$em = $this->getDoctrine()->getManager();
+$query = $em->createQuery(
+    'SELECT p
+    FROM AcmeStoreBundle:Product p
+    WHERE p.price > :price
+    ORDER BY p.price ASC'
+)->setParameter('price', '19.99');
+
+$products = $query->getResult();                                
+                                </code></pre>
+      </section>
+      <section>
+        <h2>Relaciones entre entidades</h2>
+        <pre><code>
+use Doctrine\Common\Collections\ArrayCollection;
+
+class Category
+{
+    // ...
+
+    /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
+     */
+    protected $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+}                                
+                                </code></pre>
+      </section>
+      <section>
+        <h2>Data Fixture</h2>
+
+        <pre><code class="prompt">composer require doctrine/doctrine-fixtures-bundle</code></pre>
+        <pre><code class="prompt">actualizar app/AppKernel.php</code></pre>
+        <pre><code class="prompt">mkdir -p src/Limon/BlogBundle/DataFixtures/ORM</code></pre>
+        <pre><code class="prompt">#php app/console doctrine:generate:entities                                    </code></pre>
+        <p>
+          <a href="http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html">
+            http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html
+          </a>
+        </p>
+      </section>
+      <section>
+        <h2>Migraciones</h2>
+        <pre>
+                                    <code class="prompt" style="font-size: 1.5em;">composer require doctrine/doctrine-migrations-bundle</code>
+                                </pre>
+      </section>
+      <section>
+        <h2>Migración</h2>
+        <pre>
+                                    <code>
+namespace Application\Migrations;
+
+use Doctrine\DBAL\Migrations\AbstractMigration,
+    Doctrine\DBAL\Schema\Schema;
+
+class Version20100621140655 extends AbstractMigration
+{
+    public function up(Schema $schema)
+    {
+
+    }
+
+    public function down(Schema $schema)
+    {
+
+    }
+}                                    
+                                    </code>
+                                </pre>
+      </section>
+      <section>
+        <h2></h2>
+        <p>
+        </p>
+      </section>
+
+      <section>
+        <h1>FIN</h1>
+      </section>
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
+<!--
+Teorico
+=======
+
+El contralador y sus acciones
+  - <accion>Action
+  - un controlador siempre responde un objeto response
+  - las rutas a las acciones se pueden definir como anotaciones
+Enviroments - Ambientes
+  - por defecto prod y dev
+    - app.php => prod
+    - app_dev.php => dev
+  - barra debug :)
+  
+La vista
+  - motor de plantillas twig
+  - extends
+  - tags, filters, functions
+  - incluir
+  - se puede dibujar/llamar a un controller/action
+  - path('route') y url('route')
+  - assets imgs, js's, css's
+  
+ El controlador
+  - return new Response('kk');
+  - rutas con parametros
+  - _format
+  - se puede redireccionar forward
+  - errores createNotFoundException
+  - "La resquest"
+    - en la vista existe app.request.query.get
+  - Session
+    - $request->getSession()
+    - flash messages
+      $this->addFlash('notice', 'kk');
+      
+La arquitectura
+  estrutura de directorios
+    app/ configuracion, templates reutilizables, traducciones
+    src/ nuestro codigo
+    vendor/ bibliotecas
+    web/ web root
+    
+  web/FrontController
+  app/AppKernel
+  bundle
+  
+ Cache y Logs
+  php app/console cache:clear --env=prod
+  
+  Console
+
+php app/console router:debug
+-->

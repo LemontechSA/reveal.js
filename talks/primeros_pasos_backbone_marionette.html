@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Zend Framework 2 - Lemontech</title>
+  <meta name="description" content="Presentación de vagrant para Lemontech">
+  <meta name="author" content="Marcos Matamala <mmatamala@lemontech.cl>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h2>Primeros pasos en Backbone y Marionette</h2>
+        <p>
+          <img src="https://avatars2.githubusercontent.com/u/2273169?v=3&s=400" width="200px" />
+          <img
+            src="http://s3.amazonaws.com/bundlr-app-production/bundles/photos/large/4f8d4519100ad000010010e2/backbone.png?1368629125"
+            width="200px" />
+        </p>
+      </section>
+      <section>
+        <h1>Backbone</h1>
+        <p>
+          "Backbone.js gives structure to web applications by providing models with key-value binding and custom events,
+          collections with a rich API of enumerable functions, views with declarative event handling, and connects it
+          all to your existing API over a RESTful JSON interface."
+        </p>
+        <p>
+          <a href="http://backbonejs.org/" target="_blank">backbonejs.org</a>
+        </p>
+      </section>
+      <section>
+        <h1>Marionette</h1>
+        <p>
+          "Marionette simplifies your Backbone application code with robust views and architecture solutions."
+        </p>
+        <p>
+          <a href="http://marionettejs.com/" target="_blank">marionettejs.com</a>
+        </p>
+      </section>
+      <section>
+        <h2>Handlebars</h2>
+        <p>
+          Handlebars.js is a superset of Mustache; provides control flow statements, like if and else conditionals or
+          for loops
+        </p>
+        <p><a href="http://handlebarsjs.com/" target="_blank">handlebarsjs.com</a>
+        </p>
+      </section>
+      <section>
+        <h2>Ambiente de desarrollo</h2>
+        <ul>
+          <li>Dependencias manejadas por npm, bower</li>
+          <li>Javascript escrito en Coffee</li>
+          <li>Grunt para assets y watcher</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Hello Backbone Example</h2>
+        <ul>
+          <li>Registro de nuevo usuario</li>
+          <li>Listar usuario</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Estructura básica</h2>
+        <pre><code>
+                    |-- bower_components
+                    |   |-- backbone
+                    |   |-- ...
+                    |-- css
+                    |-- js
+                    |-- node_modules
+                    |   |-- .bin
+                    |   |-- grunt
+                    |-- templates
+                    |   |-- new_user.jst
+                    |   |-- user_item.jst
+                    |--  bower.json
+                    |-- Gruntfile.js
+                    |-- index.html
+                    |-- package.json
+                </code></pre>
+      </section>
+      <section>
+        <h2>Clases principales en Hello Backbone</h2>
+        <img src="../img/primeros_pasos_backbone_marionette/hello-backbone.png" />
+      </section>
+      <section>
+        <h2>Hello Backbone Example</h2>
+        <pre><code>
+                  git clone git@bitbucket.org:cavg/hello-backbone.git
+                </code></pre>
+      </section>
+      <section>
+        <h2>Veamos código!!!</h2>
+        <img src="../img/carton.gif" />
+      </section>
+      <section>
+        <h2>Referencias</h2>
+        <p>Books Backbone.js Applications by Addy Osmani</p>
+        <p>Backbone Marionette A Gentle Introduction by David Sulc</p>
+      </section>
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
+<!--
+Teorico
+=======
+
+El contralador y sus acciones
+  - <accion>Action
+  - un controlador siempre responde un objeto response
+  - las rutas a las acciones se pueden definir como anotaciones
+Enviroments - Ambientes
+  - por defecto prod y dev
+    - app.php => prod
+    - app_dev.php => dev
+  - barra debug :)
+
+La vista
+  - motor de plantillas twig
+  - extends
+  - tags, filters, functions
+  - incluir
+  - se puede dibujar/llamar a un controller/action
+  - path('route') y url('route')
+  - assets imgs, js's, css's
+
+ El controlador
+  - return new Response('kk');
+  - rutas con parametros
+  - _format
+  - se puede redireccionar forward
+  - errores createNotFoundException
+  - "La resquest"
+    - en la vista existe app.request.query.get
+  - Session
+    - $request->getSession()
+    - flash messages
+      $this->addFlash('notice', 'kk');
+
+La arquitectura
+  estrutura de directorios
+    app/ configuracion, templates reutilizables, traducciones
+    src/ nuestro codigo
+    vendor/ bibliotecas
+    web/ web root
+
+  web/FrontController
+  app/AppKernel
+  bundle
+
+ Cache y Logs
+  php app/console cache:clear --env=prod
+
+  Console
+
+php app/console router:debug
+-->

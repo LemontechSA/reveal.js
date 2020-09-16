@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>/Expresiones regulares/</title>
+  <meta name="description" content="">
+  <meta name="author" content="Javier Lopez <jlopez@lemontech.cl>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+  <style type="text/css">
+    body {
+      background: none;
+    }
+
+    .lemon {
+      color: #F0322C;
+    }
+
+    .big {
+      font-size: 1.4em !important;
+    }
+
+    .reveal .progress span {
+      background: #F0322C;
+    }
+
+    .reveal .controls div.navigate-right,
+    .reveal .controls div.navigate-right.enabled {
+      border-left-color: #F0322C;
+    }
+
+    .reveal .controls div.navigate-left,
+    .reveal .controls div.navigate-left.enabled {
+      border-right-color: #F0322C;
+    }
+
+    .reveal h2 {
+      color: #34474E;
+    }
+  </style>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>
+          <span style="float: left;">/Expresiones</span>
+          <br />
+          <span style="float: right;">Regulares/</span>
+        </h1>
+      </section>
+
+      <section>
+        <img src="../img/regex/regex-xkcd.png" />
+      </section>
+
+      <section>
+        <h1>¿Para qué?</h1>
+        <ul>
+          <li>Validaciones</li>
+          <li>Extraer información</li>
+          <li>Scrapping</li>
+          <li>Limpiar inputs</li>
+          <li>Reemplazar patrones</li>
+          <li>Búsquedas en archivos</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>¿Cómo funcionan?</h1>
+        <img src="../img/regex/magic.jpg" />
+      </section>
+
+      <section>
+        <h1>Tokens especiales</h1>
+        <ul>
+          <li><code>.</code> - cualquier cosa</li>
+          <li><code>\n</code> - salto de línea</li>
+          <li><code>\t</code> - tab</li>
+          <li><code>^</code> - principio de línea</li>
+          <li><code>$</code> - fin de línea</li>
+          <li><code>\A</code> - principio de string (multilínea)</li>
+          <li><code>\Z</code> - fin de string (multilínea)</li>
+          <li><code>\</code> - escapa caracteres especiales</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Clases</h1>
+        <ul>
+          <li><code>[abc]</code> - uno de esos</li>
+          <li><code>[^abc]</code> - cualquier cosa menos eso</li>
+          <li><code>[a-c]</code> - rango</li>
+          <li>
+            Clases especiales
+            <ul>
+              <li><code>[[:space:]]</code> - incluye caracteres invisibles extraños como <code>\0160</code></li>
+              <li><code>[[:alpha:]]</code> - letras</li>
+              <li><code>[[:alnum:]]</code> - <code>\w</code> sin _</li>
+              <li><code>[[:ascii:]]</code> - caracteres 0 - 127</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Clases típicas</h1>
+        <ul>
+          <li><code>\d</code> - <code>[0-9]</code></li>
+          <li><code>\w</code> - <code>[a-zA-Z0-9_]</code></li>
+          <li><code>\s</code> - <code>[\n\t ]</code></li>
+          <li><code>\b</code> - como \W pero no consume el caracter</li>
+          <li>alguno de esos pero en mayúscula - negación de ese grupo (ie, <code>\D</code> es <code>[^0-9]</code>)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Cuantificadores</h1>
+        <ul>
+          <li><code>?</code> - 0 ó 1</li>
+          <li><code>*</code> - 0 ó más</li>
+          <li><code>+</code> - 1 ó más</li>
+          <li><code>*?</code> / <code>+?</code> - para lo antes posible</li>
+          <li><code>{2}</code> - exactamente 2</li>
+          <li><code>{,2}</code> - 2 o menos</li>
+          <li><code>{2,}</code> - 2 o más</li>
+          <li><code>{2,4}</code> - entre 2 y 4</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Grupos</h1>
+        <ul>
+          <li><code>(...)</code> - captura un grupo</li>
+          <li><code>(?:...)</code> - agrupa pero no captura</li>
+          <li><code>(?=...)</code> - lookahead, no consume el match</li>
+          <li><code>(?!...)</code> - lookahead negativo</li>
+          <li><code>(?&lt;=...)</code> - lookbehind</li>
+          <li><code>(?&lt;!...)</code> - lookbehind negativo</li>
+          <li><code>(?&lt;nombre&gt;...)</code> - captura un grupo con nombre</li>
+          <li><code>\1</code> - primer grupo capturado</li>
+          <li><code>\k&lt;nombre&gt;</code> - grupo con nombre</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Modificadores</h1>
+        <ul>
+          <li><code>i</code> - case insensitive</li>
+          <li><code>m</code> - multilínea</li>
+          <li><code>g</code> - global (múltiples matches)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Casi standard :(</h1>
+        <img src="../img/regex/standards.png" />
+      </section>
+
+      <section>
+        <h1>Ruby</h1>
+        <ul>
+          <li><code>s =~ /r/</code> - retorna índice o null</li>
+          <li><code>s.match(/r/)</code> - retorna match con grupos</li>
+          <li><code>s.scan(/r/)</code> - retorna arreglo de matches, o arreglo de arreglos con grupos si hay algun grupo
+            (no viene el match completo)</li>
+          <li><code>s[/r/]</code> - retorna substring matcheado</li>
+          <li><code>s[/r/, 1]</code> - retorna substring del grupo</li>
+          <li><code>s[/r/] = t</code> - reemplaza el primer match (también funciona con grupos)</li>
+          <li><code>$1</code> o <code>Regexp.last_match(1)</code> - primer grupo capturado por la última regex ejecutada
+          </li>
+          <li>permite delimitar con <code>%r{...}</code> / <code>%r(...)</code></li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Javascript</h1>
+        <ul>
+          <li>no hay lookbehind ni grupos con nombre</li>
+          <li>replace reemplaza con <code>$1</code> y <code>$&amp;</code> en vez de <code>\1</code> y <code>\0</code>
+          </li>
+          <li>match retorna array (<code>[0]</code> es todo, <code>[1]</code> es grupo 1), exepto si viene con
+            modificador <code>g</code> (array de matches, ignora grupos)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>PHP</h1>
+        <ul>
+          <li><code>preg_match ( string $pattern , string $subject [, array &amp;$matches [, int $flags = 0 [, int
+              $offset = 0 ]]] )</code></li>
+          <li>$pattern debe ser un string delimitado con <code>/.../</code> o cualquier otra cosa</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Sublime Text</h1>
+        <ul>
+          <li>para reemplazar grupos con nombre, usar <code>$+{nombre}</code>, para match completo <code>${0}</code>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Páginas para jugar</h1>
+        <ul>
+          <li><a href="https://regex101.com/">Tester/debugger</a></li>
+          <li>
+            <a href="http://regex.alf.nu/">Regex Golf</a>
+            <br />
+            <img src="../img/regex/regex_golf.png" />
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>\Z</h1>
+      </section>
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

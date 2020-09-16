@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Lelao</title>
+  <meta name="description" content="">
+  <meta name="author" content="Javier Lopez <jlopez@lemontech.cl>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+  <style type="text/css">
+    body {
+      background: none;
+    }
+
+    .lemon {
+      color: #F0322C;
+    }
+
+    .big {
+      font-size: 1.4em !important;
+    }
+
+    .reveal .progress span {
+      background: #F0322C;
+    }
+
+    .reveal .controls div.navigate-right,
+    .reveal .controls div.navigate-right.enabled {
+      border-left-color: #F0322C;
+    }
+
+    .reveal .controls div.navigate-left,
+    .reveal .controls div.navigate-left.enabled {
+      border-right-color: #F0322C;
+    }
+
+    .reveal h2 {
+      color: #34474E;
+    }
+  </style>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <img src="../img/5rabbits-logo.png" style="border: none; background: none; box-shadow: none" />
+      </section>
+      <section>
+        <h1>
+          <span style="float: left;">/Expresiones</span>
+          <br />
+          <span style="float: right;">Regulares/</span>
+          <br />
+          <span>/2\.0/</span>
+        </h1>
+      </section>
+
+      <section>
+        <img src="../img/lelao/no.jpg" />
+      </section>
+
+      <section>
+        <h1>Lelao</h1>
+        <audio id="lelao" src="../img/lelao/lelao_corto.ogg"></audio>
+      </section>
+
+      <section>
+        <h1>¿Qué es lelao?</h1>
+      </section>
+
+      <section>
+        <h2>Definición RAE</h2>
+        <p>
+          <em>La palabra lelao no está registrada en el Diccionario. Las entradas que se muestran a continuación podrían
+            estar relacionadas:</em>
+          <ul>
+            <li>
+              <strong>lelo, la</strong><em class="fragment" data-fragment-index="1">: Simple o atontado</em>
+            </li>
+            <li>
+              <strong>lilao</strong><em class="fragment" data-fragment-index="1">: Ostentación vana en el porte o en
+                palabras y acciones</em>
+            </li>
+          </ul>
+        </p>
+      </section>
+
+      <section>
+        <em>Medio de comunicación invasivo y anárquico</em>
+      </section>
+
+      <section>
+        <h1>Historia</h1>
+      </section>
+
+      <section>
+        <img src="../img/lelao/cavernarios.jpg" />
+      </section>
+
+      <section>
+        <h2>Febrero 2014</h2>
+        <p>Operación "Carrito de completos"</p>
+      </section>
+
+      <section>
+        <h2>Marzo 2014</h2>
+        <p>Lelao se independiza</p>
+        <p>Inicia la edad de oro</p>
+      </section>
+
+      <section>
+        <h2>Julio 2015</h2>
+        <p>Mudanza</p>
+        <p class="fragment">Desaparece "servidor dedicado"</p>
+        <p class="fragment">Nace Lelao Lite</p>
+        <p class="fragment">Vale hongo</p>
+        <p class="fragment">Cae en el olvido</p>
+      </section>
+
+      <section>
+        <img src="../img/lelao/cavernarios.jpg" />
+      </section>
+
+      <section>
+        <h1>Stack</h1>
+        <ul>
+          <li>Firebase</li>
+          <li>"Servidor": HTML+JS escuchando en un browser</li>
+          <li>"Cliente": POST desde cualquier lado (Userscript)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Features</h1>
+        <ul>
+          <li>
+            Mostrar una página
+            <ul>
+              <li>Fullscreenea yutubs/imagenes</li>
+              <li>Gfycatea e invierte gifs (aka, los salva)</li>
+            </ul>
+          </li>
+          <li>Hablar</li>
+          <li>Favoritos</li>
+          <li>Caracola mágica</li>
+          <li>Memegenerator</li>
+          <li>Instants</li>
+          <li>Blame/praise</li>
+          <li>Dar la hora</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Situación <br /> actual</h1>
+        <ul>
+          <li>
+            Lelao Lite no puede mostrar cualquier página
+            <ul>
+              <li>Iframes no siempre tienen permiso para mostrarse</li>
+            </ul>
+          </li>
+          <li>Ya no sabe hablar</li>
+          <li>Gfycats no se agrandan ni se invierten</li>
+          <li>Favoritos olvidados</li>
+          <li>Blame/praise impreciso</li>
+          <li>Demora en cargar</li>
+          <li>Datos manipulables</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Futuro</h1>
+        <ul>
+          <li>Regreso del "servidor dedicado"</li>
+          <li>Recuperar el habla con <a href="javascript:talk('Que vuelvan los lelaos')">Speech Synthesis API</a></li>
+          <li>Mejorar integración con Gfycat usando un Userscript</li>
+          <li>Limpieza de datos y reestructuración de la BD</li>
+          <li>Migración de favoritos</li>
+          <li>Manejo de permisos de Firebase</li>
+          <li>Modernizar integración con Firebase</li>
+          <li>Crear extensión para Firefox/Chrome</li>
+        </ul>
+      </section>
+
+      <section>
+        <ul>
+          <li><a href="https://lelao.neocities.org/?5rabbits">Lelao (full)</a></li>
+          <li><a href="https://lelao.neocities.org/lelao.user.js">Userscript</a></li>
+          <li><a href="https://youtu.be/W58xZWPhySI?t=131">Video</a></li>
+          <li><a href="https://bitbucket.org/lemontech/lelao">Repositorio en BitBucket</a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>/TTB Load DB/</title>
+  <meta name="description" content="">
+  <meta name="author" content="Nicolás Torres <ntorres@lemontech.cl>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+  <style type="text/css">
+    body {
+      background: none;
+    }
+
+    code {
+      background: #F8F8FF;
+      border: black dashed 1px;
+      padding: 6px;
+    }
+
+    ​ .lemon {
+      color: #F0322C;
+    }
+
+    .big {
+      font-size: 1.4em !important;
+    }
+
+    .reveal .progress span {
+      background: #F0322C;
+    }
+
+    .reveal .controls div.navigate-right,
+    .reveal .controls div.navigate-right.enabled {
+      border-left-color: #F0322C;
+    }
+
+    .reveal .controls div.navigate-left,
+    .reveal .controls div.navigate-left.enabled {
+      border-right-color: #F0322C;
+    }
+
+    .reveal h2 {
+      color: #34474E;
+    }
+  </style>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>
+          <span>/Load Database/</span>
+        </h1>
+        <small style="float: right;">( ͡° ͜ʖ ͡°)</small>
+        <h5>
+          <span style="float: right;">/Mi Herramienta/</span>
+        </h5>
+      </section>
+
+      <section>
+        <h1>Necesidad</h1>
+        <ul>
+          <li class="fragment">Unificar opciones</li>
+          <li class="fragment">Olvidarse del tiempo</li>
+          <li class="fragment">Automatización</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>1ª Versión</h1>
+        <ul>
+          <li>BASH</li>
+        </ul>
+        <br>
+        <br>
+        <code class="fragment">
+          $: ./load_db.sh tenant Y/m/d
+        </code>
+      </section>
+
+      <section>
+        <h1>¿Problemas?</h1>
+        <ul>
+          <li class="fragment">No personalizable</li>
+          <li class="fragment">Clientes con nombres especiales</li>
+          <li class="fragment">Fechas</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>2ª Versión</h1>
+        <h2>Ruby</h2>
+        <img src="../img/100px-Ruby_logo.svg.png">
+        <br>
+        <br>
+        <code class="fragment">
+          $: ./load_db.rb<br>
+          $: ./load_db.rb tenant
+        </code>
+      </section>
+
+      <section>
+        <h1>Influencias</h1>
+        <ul>
+          <li class="fragment">Deploy</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>¿Mejoras?</h1>
+        <ul>
+          <li class="fragment">Personalizable</li>
+          <li class="fragment">Sólo basta con escribir el tentant del cliente, o no</li>
+          <li class="fragment">Fechas</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Repo</h1>
+        <ul>
+          <li>git@bitbucket.org:ntorresj/load_db.git</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
