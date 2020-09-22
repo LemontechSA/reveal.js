@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Deploy - Lemontech</title>
+  <meta name="description" content="Presentación de vagrant para Lemontech">
+  <meta name="author" content="Marcos Matamala <mmatamala@lemontech.cl>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+
+  <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h3>
+          Herramientas de automatización de tareas en servidores remotos.
+        </h3>
+      </section>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Software</th>
+              <th>Versión</th>
+              <th>Lang</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Capistrano</td>
+              <td>3.4.0</td>
+              <td>Ruby => 1.9</td>
+            </tr>
+            <tr>
+              <td>Rocketeer</td>
+              <td>2.1.2</td>
+              <td>PHP</td>
+            </tr>
+            <tr>
+              <td>Deployer</td>
+              <td>2.0.2</td>
+              <td>PHP => 5.4</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Software</th>
+              <th>GIT</th>
+              <th>SVN</th>
+              <th>Mercurial</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Capistrano</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10004;</td>
+            </tr>
+            <tr>
+              <td>Rocketeer</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10008;</td>
+            </tr>
+            <tr>
+              <td>Deployer</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10008;</td>
+              <td style="text-align: center;">&#10008;</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Software</th>
+              <th>Rollback</th>
+              <th>Multiserver</th>
+              <th>Plugins</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Capistrano</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10004;</td>
+            </tr>
+            <tr>
+              <td>Rocketeer</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10004;</td>
+            </tr>
+            <tr>
+              <td>Deployer</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10004;</td>
+              <td style="text-align: center;">&#10004;</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Software</th>
+              <th>Install</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Capistrano</td>
+              <td style="text-align: center;">gem install</td>
+            </tr>
+            <tr>
+              <td>Rocketeer</td>
+              <td style="text-align: center;">composer global require</td>
+            </tr>
+            <tr>
+              <td>Deployer</td>
+              <td style="text-align: center;">composer global require</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Software</th>
+              <th>Inicio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Capistrano</td>
+              <td style="text-align: center;">cap install</td>
+            </tr>
+            <tr>
+              <td>Rocketeer</td>
+              <td style="text-align: center;">rocketeer ignite</td>
+            </tr>
+            <tr>
+              <td>Deployer</td>
+              <td style="text-align: center;">vim deploy.php</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h1>Capistrano</h1>
+        <p data-markdown>
+          <script type="text/template">
+            ```BASH
+Capfile
+config
+├── deploy
+│   ├── production.rb
+│   └── staging.rb
+└── deploy.rb 
+                                    ```                                        
+                                    </script>
+        </p>
+      </section>
+      <section>
+        <h1>Capistrano</h1>
+        <p>deploy.rb</p>
+        <p data-markdown>
+          <script type="text/template">
+            ```RUBY   
+lock '3.4.0'
+
+set :application, 'blog'
+
+set :repo_url, 'git@bitbucket.org:tidor-desarrollo/bolt-blog.git'
+set :keep_releases, 3
+
+set :file_permissions_paths, ['extensions', 'app/cache', 'theme']
+set :linked_dirs, fetch(:linked_dirs, []).push('files', 'app/database', 'app/config')
+
+before "deploy:updated", "deploy:set_permissions:chmod"                                        
+                                        ```
+                                    </script>
+      </section>
+      <section>
+        <h1>Capistrano</h1>
+        <p>deploy/production.rb</p>
+        <p data-markdown>
+          <script type="text/template">
+            ```RUBY
+set :deploy_to, '/var/www/apps/blog'
+
+server 'blog.tidor.cl',
+  user: 'deployuser',
+  ssh_options: {
+    user: 'deployuser',
+    keys: %w(~/.ssh/id_rsa),
+    forward_agent: false,
+    auth_methods: %w(publickey)
+  }                                        
+                                        ```
+                                    </script>
+      </section>
+      <section>
+        <h1>Rocketeer</h1>
+        <p data-markdown>
+          <script type="text/template">
+            ```BASH
+.rocketeer
+├── config.php
+├── hooks.php
+├── logs
+├── paths.php
+├── remote.php
+├── scm.php
+├── stages.php
+├── strategies.php
+└── tasks.php                                    
+                                        ```
+                                    </script>
+        </p>
+      </section>
+      <section>
+        <h1>Rocketeer</h1>
+        <p>config.php</p>
+        <p data-markdown>
+          <script type="text/template">
+            ```PHP
+<?php
+
+use Rocketeer\Services\Connections\ConnectionsHandler;
+
+return [
+    'application_name' => 'blog',
+    'plugins'          => [],
+    'logs'             => function (ConnectionsHandler $connections) {
+        return sprintf('%s-%s-%s.log', $connections->getConnection(), $connections->getStage(), date('Ymd'));
+    },
+    'default'          => ['production'],
+    'connections'      => [
+        'production' => [
+            'host'      => 'blog.tidor.cl',
+            'username'  => 'deployuser',
+            'key'       => '~/.ssh/id_rsa',
+            'agent'     => '',
+            'db_role'   => true,
+        ],
+        'development' => [
+            'host'      => 'dev.tidor.cl',
+            'username'  => 'deployuser',
+            'key'       => '~/.ssh/id_rsa',
+            'agent'     => '',
+            'db_role'   => true,
+        ],
+    ],
+    'use_roles'        => false,
+    'on'               => [
+        'stages'      => [
+            'development' => [
+                'scm' => array('branch' => 'staging'),
+                'application_name' => 'blog',
+            ],
+            'production' => [
+                'scm' => array('branch' => 'master'),
+                'application_name' => 'dev',
+            ]
+        ],
+        'connections' => [],
+
+    ],
+
+];                                        
+                                        ```
+                                    </script>
+        </p>
+      </section>
+      <section>
+        <h1>Rocketeer</h1>
+        <p>scm.php</p>
+        <p data-markdown>
+          <script type="text/template">
+            ```PHP
+<?php
+
+return [
+    'scm'        => 'git',
+    'repository' => 'git@bitbucket.org:tidor-desarrollo/bolt-blog.git',
+    'username'   => null,
+    'password'   => null,
+    'branch'     => 'master',
+    'shallow'    => true,
+    'submodules' => true,
+];
+                                        
+                                        ```
+                                    </script>
+        </p>
+      </section>
+      <section>
+        <h1>Deployer</h1>
+        <p data-markdown>
+          <script type="text/template">
+            ```BASH
+                                        deploy.php
+                                    ```                                        
+                                    </script>
+        </p>
+      </section>
+      <section>
+        <h1>Deployer</h1>
+        <p data-markdown>
+          <script type="text/template">
+            ```PHP
+require 'recipe/common.php';
+
+set('repository', 'git@bitbucket.org:tidor-desarrollo/bolt-blog.git');
+set('keep_releases', 3);
+
+server('main', 'blog.tidor.cl')
+    ->path('/var/www/apps/blog')
+    ->user('deployuser')
+    ->pubKey();
+
+server('dev', 'dev.tidor.cl')
+    ->path('/var/www/apps/dev')
+    ->user('deployuser')
+    ->pubKey();
+
+stage('production', array('main'))->set('branch', 'master');
+stage('development', array('dev'))->set('branch', 'develop');
+
+set('writable_dirs', ['extensions', 'app/cache', 'theme']);
+set('shared_dirs', ['files', 'app/database', 'app/config']);
+
+task('permisos', function(){
+    $paths = array(
+        env()->getWorkingPath() . '/shared/app/cache',
+        env()->getReleasePath() . '/extensions',
+    );
+    
+    foreach($paths as $dir) {
+        run(sprintf('mkdir -p %s', $dir));
+        run(sprintf('chmod 770 -R %s', $dir));        
+    }
+})->desc('Permisos :)');
+
+task('deploy', [
+    'deploy:start',
+    'deploy:prepare',
+    'deploy:update_code',
+    'deploy:symlink',
+    'cleanup',
+    'deploy:end',
+    'deploy:shared',
+]);
+
+after('deploy:shared', 'permisos');
+                                    ```                                        
+                                    </script>
+        </p>
+      </section>
+      <section>
+        <h1>Deploy</h1>
+        <p data-markdown>
+          <script type="text/template">
+            ```
+                                        cap [stage] deploy
+                                        rocketeer deploy --on="[stage]"
+                                        dep deploy [stage]                                
+                                        ```
+                                    </script>
+        </p>
+      </section>
+      <section>
+        <h1>Capistrano</h1>
+        <p>run command</p>
+        <p data-markdown>
+          <script type="text/template">
+            ```RUBY
+task :ps do
+    on 'root@blog.tidor.cl' do
+        info capture(:ps, '-aux')
+    end
+end                              
+                                        ```
+                                        ```BASH
+                                        cap production ps                                        
+                                        ```
+                                        ```BASH
+DEBUG [251f49bc] Running /usr/bin/env ps -aux as root@blog.tidor.cl
+DEBUG [251f49bc] Command: /usr/bin/env ps -aux
+DEBUG [251f49bc] 	USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+DEBUG [251f49bc] 	root         1  0.0  0.6  32760  7000 ?        Ss   abr14   0:22 /sbin/init
+DEBUG [251f49bc] 	root         2  0.0  0.0      0     0 ?        S    abr14   0:00 [kthreadd]
+DEBUG [251f49bc] 	root         3  0.0  0.0      0     0 ?        S    abr14   0:01 [ksoftirqd/0]
+
+                                        ```                                        
+                                    </script>
+        </p>
+      </section>
+      <section>
+        <h1>Rocketeer</h1>
+        <p>run command</p>
+        <p data-markdown>
+          <script type="text/template">
+            ```PHP
+<?php
+use Rocketeer\Facades\Rocketeer;
+
+Rocketeer::task('ps', function ($task) {
+  return $task->run('ps -aux');
+}, 'ps -aux');                              
+                                        ```
+                                        ```BASH
+                                        rocketeer ps                                        
+                                        ```
+                                        ```BASH
+production/0 | Ps (ps -aux)
+$ ps -aux
+[deployuser@blog.tidor.cl] (production) USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.6  32760  7000 ?        Ss   abr14   0:22 /sbin/init
+root         2  0.0  0.0      0     0 ?        S    abr14   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    abr14   0:01 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S<   abr14   0:00 [kworker/0:0H]
+                                        ```                                        
+                                    </script>
+        </p>
+      </section>
+      <section>
+        <h1>Deployer</h1>
+        <p>run command</p>
+        <p data-markdown>
+          <script type="text/template">
+            ```PHP
+task('ps', function(){
+    run('ps -aux');
+})->desc('ps -aux');
+                                        ```
+                                        ```BASH
+                                        dep ps production -vvv                                        
+                                        ```
+                                        ```BASH
+ps -aux
+Run task ps on server main
+[blog.tidor.cl] cd /var/www/apps/blog && ps -aux
+[blog.tidor.cl] :: USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+[blog.tidor.cl] :: root         1  0.0  0.6  32760  7000 ?        Ss   abr14   0:22 /sbin/init
+[blog.tidor.cl] :: root         2  0.0  0.0      0     0 ?        S    abr14   0:00 [kthreadd]
+[blog.tidor.cl] :: root         3  0.0  0.0      0     0 ?        S    abr14   0:01 [ksoftirqd/0]
+[blog.tidor.cl] :: root         5  0.0  0.0      0     0 ?        S<   abr14   0:00 [kworker/0:0H]
+
+                                        ```                                        
+                                    </script>
+        </p>
+      </section>
+      <section>
+        <h1>FIN</h1>
+        <h3>diploy, diploy, diploy!!!</h3>
+      </section>
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

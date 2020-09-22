@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Vista Controlador de TimeTracking - Lemontech</title>
+  <meta name="description" content="Presentación de Vista Controlador de TimeTracking para Lemontech">
+  <meta name="author" content="Claudio Peralta <cperalta@lemontech.cl>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>Vista Controlador de TimeTracking</h1>
+        <p><a href="http://www.vagrantup.com/" target="_blank">www.thetimebilling.com</a></p>
+      </section>
+      <section>
+        <h2>El Problema</h2>
+        <p>
+          Actualmente el front-end de time tracking se basa en archivos de interfaz, cada uno de estos archivos puede
+          contener:
+        </p>
+        <ul>
+          <li class="fragment">Querys (MySQL)</li>
+          <li class="fragment">PHP (print, scripts y clases)</li>
+          <li class="fragment">Html</li>
+          <li class="fragment">Javascript</li>
+          <li class="fragment">... y todas las convinaciones posibles de lo anterior.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Nueva Arquitectura</h2>
+        <p>
+          La nueva arquitectura propuesta por Daniel Ochoa, nos presenta un modelo separado en capas:
+        </p>
+        <ul>
+          <li>Business</li>
+          <li>Service</li>
+          <li>DAO</li>
+          <li>Persistent Media</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Vista - Controlador</h2>
+        <p>
+          Son 3 nuevas capas que se agregan a la Arquitectura y son la que intectuan con el usuario.
+        </p>
+        <ul>
+          <li class="fragment">Router</li>
+          <li class="fragment">Controller</li>
+          <li class="fragment">View</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Nueva Arquitectura</h2>
+        <img style="background:#fff" src="https://github.com/LemontechSA/ttb/wiki/images/Full%20Architecture.png" />
+      </section>
+      <section>
+        <h2>Capa Router</h2>
+        <p>El router es el encargado de asignar la tarea al controlador correspondiente según la URL.</p>
+        <p>Estas URL son formadas de la siguiente manera.</p>
+        <p>
+          <br />
+          <code> / app / ControllerName / action / arg1 / arg2 / ... </code>
+          <br />
+        </p>
+        <ul>
+          <li class="fragment"><b>ControllerName</b> es el nombre del controlador sin sufijo Controller.</li>
+          <li class="fragment"><b>action</b> es el méthodo del controlador que ejecutará la tarea.</li>
+          <li class="fragment"><b>arg...</b> son lo argumentos que se pasarán a método</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Capa controller</h2>
+        <p>
+          El controlador es quien transará con el negocio (Business) y entregará el resultado a la vista.
+        </p>
+        <p>
+          Por defecto el controlador llamará a la vista con el mismo nombre de la acción, pero esto puede ser cambiado
+          con la acción render(), donde se le indica a que vista se le pasarán los datos.
+        </p>
+      </section>
+      <section>
+        <h2>Capa View</h2>
+        <p>
+          La vista es la encargada de entregarle la respuesta al usuario y se divide principalmente en 4 herramientas:
+        </p>
+        <ul>
+          <li class="fragment"><b>Layout</b></li>
+          <li class="fragment"><b>View</b></li>
+          <li class="fragment"><b>Element</b> minivistas que puedes ser incluidas en cualquier vista</li>
+          <li class="fragment"><b>Helper</b> clases que nos ayudan a construir el Html</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Layout</h2>
+        <img src="https://github.com/LemontechSA/ttb/wiki/images/layout-part.png" />
+      </section>
+      <section>
+        <h2></h2>
+        <img src="https://github.com/LemontechSA/ttb/wiki/images/element-layout-part.png" />
+      </section>
+      <section>
+        <h2></h2>
+        <img src="https://github.com/LemontechSA/ttb/wiki/images/view-part.png" />
+      </section>
+      <section>
+        <h2></h2>
+        <img src="https://github.com/LemontechSA/ttb/wiki/images/element-view-part.png" />
+      </section>
+      <section>
+        <h1>FIN</h1>
+      </section>
+      <section>
+        <h1>Ayuda</h2>
+          <a>https://github.com/LemontechSA/ttb/wiki/Arquitectura</a>
+          <a>https://github.com/LemontechSA/ttb/wiki/Controlador</a>
+          <a>https://github.com/LemontechSA/ttb/wiki/Vista</a>
+      </section>
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

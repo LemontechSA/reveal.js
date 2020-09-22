@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Vagrant 1.6.5 - Lemontech</title>
+  <meta name="description" content="Presentación de vagrant para Lemontech">
+  <meta name="author" content="Marcos Matamala <mmatamala@lemontech.cl>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>Vagrant 1.6.5</h1>
+        <p><a href="http://www.vagrantup.com/" target="_blank">www.vagrantup.com</a></p>
+      </section>
+      <section>
+        <h2>Antes Imaginemos</h2>
+        <p>
+          que tenemos una empresa que se llame LimónTecnológico. Con las siguientes caracteristicas.
+        </p>
+      </section>
+      <section>
+        <h2>Tiene Muchos Desarrolladores</h2>
+        <table align="center" width="100%">
+          <tr>
+            <td><img alt="Abraham Barrera" class="avatar member-list-avatar" data-user="445798"
+                src="https://avatars0.githubusercontent.com/u/445798?v=2&amp;s=96" height="96" width="96"></td>
+            <td><img alt="Javier Lopez" class="avatar member-list-avatar" data-user="1610221"
+                src="https://avatars3.githubusercontent.com/u/1610221?v=2&amp;s=96" height="96" width="96"></td>
+            <td><img alt="Felipe Figueroa" class="avatar member-list-avatar" data-user="238439"
+                src="https://avatars2.githubusercontent.com/u/238439?v=2&amp;s=96" height="96" width="96"></td>
+            <td><img alt="Ariel Rosver" class="avatar member-list-avatar" data-user="1871917"
+                src="https://avatars1.githubusercontent.com/u/1871917?v=2&amp;s=96" height="96" width="96"></td>
+          </tr>
+          <tr>
+            <td><img alt="Marcos Matamala Fernández" class="avatar member-list-avatar" data-user="194420"
+                src="https://avatars1.githubusercontent.com/u/194420?v=2&amp;s=96" height="96" width="96"></td>
+            <td><img alt="Claudio Briones González" class="avatar member-list-avatar" data-user="2922197"
+                src="https://avatars3.githubusercontent.com/u/2922197?v=2&amp;s=96" height="96" width="96">
+            <td><img alt="Camilo Verdugo" class="avatar member-list-avatar" data-user="383750"
+                src="https://avatars1.githubusercontent.com/u/383750?v=2&amp;s=96" height="96" width="96">
+            <td><img alt="Claudio Peralta" class="avatar member-list-avatar" data-user="2649597"
+                src="https://avatars0.githubusercontent.com/u/2649597?v=2&amp;s=96" height="96" width="96"></td>
+          </tr>
+          <tr>
+            <td><img alt="Daniel Ochoa John" class="avatar member-list-avatar" data-user="1789678"
+                src="https://avatars0.githubusercontent.com/u/1789678?v=2&amp;s=96" height="96" width="96"></td>
+            <td><img alt="David Rojas Camaggi" class="avatar member-list-avatar" data-user="1720752"
+                src="https://avatars1.githubusercontent.com/u/1024025?v=2&s=96" height="96" width="96"></td>
+            <td><img alt="linus" class="avatar member-list-avatar" data-user="2180209"
+                src="https://avatars2.githubusercontent.com/u/2180209?v=2&amp;s=96" height="96" width="96"></td>
+            <td><img alt="Jose" class="avatar member-list-avatar" data-user="4421352"
+                src="https://avatars1.githubusercontent.com/u/4421352?v=2&amp;s=96" height="96" width="96"></td>
+          </tr>
+          <tr>
+            <td><img alt="Juancu" class="avatar member-list-avatar" data-user="1569897"
+                src="http://avatar3.status.net/i/identica/11329-96-20080901170949.png" height="96" width="96"></td>
+            <td><img alt="Martín Batalla" class="avatar member-list-avatar" data-user="3298753"
+                src="https://avatars2.githubusercontent.com/u/3298753?v=2&amp;s=96" height="96" width="96"></td>
+            <td><img alt="Matías Orellana" class="avatar member-list-avatar" data-user="1439999"
+                src="https://avatars1.githubusercontent.com/u/1439999?v=2&amp;s=96" height="96" width="96"></td>
+            <td><img alt="Vladimir Zurita" class="avatar member-list-avatar" data-user="502799"
+                src="https://avatars1.githubusercontent.com/u/502799?v=2&amp;s=96" height="96" width="96"></td>
+          </tr>
+        </table>
+      </section>
+      <section>
+        <h2>Que usan distintos S.O.</h2>
+        <ul>
+          <li>Ubuntu</li>
+          <li>OS X</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Tiene muchas Aplicaciones</h2>
+        <ol>
+          <li class="fragment">TheTimeBilling</li>
+          <li class="fragment">CaseTracking</li>
+          <li class="fragment">Licencias</li>
+          <li class="fragment">GES</li>
+          <li class="fragment">Headhunter</li>
+          <li class="fragment">Rodeo</li>
+          <li class="fragment">Security</li>
+          <li class="fragment">Boleta</li>
+          <li class="fragment">CME Imagenes</li>
+          <li class="fragment">Librofresco</li>
+          <li class="fragment">BPRE2</li>
+          <li class="fragment">CorreosRebotados</li>
+          <li class="fragment">CACERT</li>
+          <li class="fragment">NEP</li>
+          <li class="fragment">Liquidador</li>
+        </ol>
+      </section>
+      <section>
+        <h2>Oseaaaaaaaaaaaa!!!</h2>
+        <p>16 desarrolladores</p>
+        <p>2 sistemas operativos</p>
+        <p>15 aplicaciones</p>
+        <h3>16 x 2 x 15 = 480</h3>
+      </section>
+      <section>
+        <h3>Necesitamos automatizar la creación de ambientes de desarrollo</h3>
+      </section>
+      <section>
+        <h2>¿Qué es Vagrant?</h2>
+        <p>
+          Vagrant es capaz de crear y configurar, de forma "automágica", entornos de desarrollo, portables y lo mejor de
+          todo, reproducibles.
+        </p>
+      </section>
+      <section>
+        <h2>¿Qué se necesita?</h2>
+        <ul>
+          <li>Software de virtualización (VirtualBox, VMware, AWS)</li>
+          <li>Vagrant 1.6.5</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Antes de seguir 3 conceptos</h2>
+        <ol>
+          <li>Box</li>
+          <li>Provision</li>
+          <li>Vagrantfile</li>
+        </ol>
+      </section>
+      <section>
+        <h2>Box</h2>
+        <p>
+          Box es la imagen empaquetada de una maquina virtual que será utilizada con Vagrant. En <a
+            href="https://vagrantcloud.com/" target="_blank">https://vagrantcloud.com/</a> se pueden encontrar box para
+          varios propositos.
+        </p>
+      </section>
+      <section>
+        <h2>Provision</h2>
+        <p>
+          Es la definición de la herramienta o método que automatizan la configuración e instalación de nuestra
+          aplicación.
+        </p>
+      </section>
+      <section>
+        <h2>Vagrantfile</h2>
+        <p>
+          Vagrantfile es quien define el box a usar, su configuración y el mótodo de provision de nuestra aplicación.
+        </p>
+      </section>
+      <section>
+        <h2>Y ?</h2>
+        <ul>
+          <li>mkdir maquina_ttb && cd maquina_ttb</li>
+          <li>vagrant init hashicorp/precise32</li>
+          <li>vim <a href="#/14">Vagrantfile</a></li>
+          <li>vagrant up</li>
+          <li>vagrant ssh</li>
+          <li>vagrant reload</li>
+          <li>vagrant provision</li>
+          <li>vagrant status</li>
+          <li>vagrant halt</li>
+        </ul>
+      </section>
+      <section data-markdown>
+        <script type="text/template">
+          ## Vagrantfile
+                                            ```ruby
+                                                    VAGRANTFILE_API_VERSION = "2"
+
+                                                    Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+                                                      config.vm.box = "hashicorp/precise32"
+
+                                                      config.vm.network "forwarded_port", guest: 80, host: 8080
+                                                      config.vm.synced_folder "../../trabajo", "/vagrant"
+                                                      config.vm.provision :shell, path: "provision.sh"
+                                                    end
+                                            ```
+                                    </script>
+      </section>
+      <section data-markdown>
+        <script type="text/template">
+          ## Provision (Chef, Puppet, Shell)
+            ```bash
+#!/bin/bash
+MYSQL_ROOT_PASS=admin.asdwsx
+
+export DEBIAN_FRONTEND=noninteractive
+
+echo "mysql-server-5.6 mysql-server/root_password password $MYSQL_ROOT_PASS" | sudo debconf-set-selections
+echo "mysql-server-5.6 mysql-server/root_password_again password $MYSQL_ROOT_PASS" | sudo debconf-set-selections
+
+apt-get -y --quiet update
+apt-get -y --quiet install lamp-server^
+apt-get -y --quiet install php5-curl curl vim php-pear
+
+if [ ! -f /etc/phpmyadmin/config.inc.php ];
+then
+  echo "phpmyadmin phpmyadmin/dbconfig-install boolean false" | debconf-set-selections
+  echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections
+  echo "phpmyadmin phpmyadmin/app-password-confirm password $MYSQL_ROOT_PASS" | debconf-set-selections
+  echo "phpmyadmin phpmyadmin/mysql/admin-pass password $MYSQL_ROOT_PASS" | debconf-set-selections
+  echo "phpmyadmin phpmyadmin/password-confirm password $MYSQL_ROOT_PASS" | debconf-set-selections
+  echo "phpmyadmin phpmyadmin/setup-password password $MYSQL_ROOT_PASS" | debconf-set-selections
+  echo "phpmyadmin phpmyadmin/database-type select mysql" | debconf-set-selections
+  echo "phpmyadmin phpmyadmin/mysql/app-pass password $MYSQL_ROOT_PASS" | debconf-set-selections
+  apt-get -y install phpmyadmin
+fi
+apt-get -y --quiet autoremove purge
+apt-get -y --quiet clean
+
+pear install Numbers_Words-0.16.4
+pear install Spreadsheet_Excel_Writer-beta
+pear install OLE-0.5
+
+# Apache
+echo "AddDefaultCharset ISO-8859-1" >> /etc/apache2/conf.d/charset
+echo "AddCharset ISO-8859-1 .iso8859-1 .latin1" >> /etc/apache2/conf.d/charset
+echo "ServerName localhost" >> /etc/apache2/conf.d/name
+
+sed -i "s/\/var\/www/\/var\/www\/vagrant/" /etc/apache2/sites-available/default
+ln -s /vagrant /var/www/vagrant
+
+# PHP
+sed -i "s/short_open_tag = Off/short_open_tag = On/g" /etc/php5/apache2/php.ini
+sed -i 's/;default_charset = "iso-8859-1"/default_charset = "iso-8859-1"/g' /etc/php5/apache2/php.ini
+sed -i "s/error_reporting = E_ALL & ~E_DEPRECATED/error_reporting = E_COMPILE_ERROR|E_ERROR|E_CORE_ERROR/g" /etc/php5/apache2/php.ini
+sed -i "s/register_globals = Off/register_globals = On/g" /etc/php5/apache2/php.ini
+
+# MySQL
+echo "[mysqld]" >> /etc/mysql/conf.d/character.cnf
+echo "character-set-server = latin1" >> /etc/mysql/conf.d/character.cnf
+echo "character-set-client = latin1" >> /etc/mysql/conf.d/character.cnf
+
+mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p$MYSQL_ROOT_PASS mysql
+mysql -u root -p$MYSQL_ROOT_PASS mysql -e "CREATE USER 'admin'@'%' IDENTIFIED BY 'admin1awdx'"
+mysql -u root -p$MYSQL_ROOT_PASS mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%'"
+
+# Restart
+service apache2 restart
+service mysql restart
+
+            ```
+          </script>
+      </section>
+      <section>
+        <h1>Conclusiónes</h4>
+          <ul>
+            <li>Usar vagrant ahorra tiempo importante y caro</li>
+            <li>Nos independiza de los proyectos</li>
+            <li>No usar un box en producción</li>
+            <li>Versionar el archivo Vagrantfile con su proyecto</li>
+          </ul>
+      </section>
+      <section>
+        <h2>Vagrant en Lemontech</h2>
+        <p><a href="https://github.com/LemontechSA/ttb/pull/723/files"
+            target="_blank">https://github.com/LemontechSA/ttb/pull/723/files</a></p>
+      </section>
+      <section>
+        <h1>FIN</h1>
+      </section>
+      <section>
+        <h1>Ayuda</h2>
+          <p>http://www.google.com</a>
+            <p>http://www.vagrantup.com</p>
+            <p>https://vagrantcloud.com/</p>
+            <p>http://codehero.co/como-instalar-y-configurar-vagrant/</p>
+            <p>http://sercomi.com/maquinas-virtuales-vagrant-virtualbox/</p>
+            <p>http://blog.insert-coin.org/post/38822986685/que-es-vagrant-y-como-puede-ser-util-a-los-devs-y-a</p>
+      </section>
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

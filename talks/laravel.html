@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Laravel 4 - Lemontech</title>
+  <meta name="description" content="Presentación de laravel para Lemontech">
+  <meta name="author" content="Vladimir Zurita <vzurita@lemontech.com<">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>Laravel 4</h1>
+        <p><a href="http://www.laravel.com/" target="_blank">www.laravel.com</a></p>
+      </section>
+      <section>
+        <h2>¿Qué es?</h2>
+        <p>Laravel es un framework de código abierto para desarrollar aplicaciones y servicios web con PHP 5. Su
+          filosofía es desarrollar código PHP de forma elegante y simple, evitando el "código espagueti". Fue creado en
+          2011 y tiene una gran influencia de frameworks como Ruby on Rails, Sinatra y ASP.NET MVC</p>
+      </section>
+      <section>
+        <h2>Características</h2>
+        <ul>
+          <li>Sistema de ruteo, también RESTful</li>
+          <li>Blade, Motor de plantillas</li>
+          <li>Peticiones Fluent (Query builder)</li>
+          <li>Eloquent ORM</li>
+          <li>Basado en Composer</li>
+          <li>Soporte para el caché (Memcaches, Redis)</li>
+          <li>Soporte para MVC</li>
+          <li>Usa componentes de Symfony</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Instalación</h2>
+        <p>La mejor manera es usando composer, primero descargamos el instalador:</p>
+        <pre>
+        <code type="text/template">composer global require "laravel/installer=~1.1"</code>
+        </pre>
+        <p>Hay que asegurarse de poner el directoro ~/.composer/vendor/bin en el PATH para que al ejecutar el comando
+          laravel, pueda encontrar el ejecutable.</p>
+        <p>Con composer creamos un nuevo proyecto:</p>
+        <pre>
+        <code type="text/template">composer create-project laravel/laravel nombre-de-mi-proyecto</code>
+        </pre>
+        <p>Hay que darle permisos de escritura al directorio app/storage</p>
+      </section>
+      <section>
+        <h2>Enrutamiento</h2>
+        <p>Se pueden definir rutas simples:</p>
+        <pre>
+          <code>
+          Route::get('index', function() {
+              return 'La página index';
+          });
+          </code>
+          </pre>
+      </section>
+      <section>
+        <h2>Enrutamiento</h2>
+        <p>Rutas basadas en controladores</p>
+        <pre>
+        <code>
+        Route::get('usuarios', 'UsuariosController@index');
+        </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Enrutamiento</h2>
+        <p>Rutas RESTful</p>
+        <pre>
+            <code>Route::resource('usuarios, 'UsuariosController');</code>
+          </pre>
+        <p>Desde el controlador se manejan los siguientes recursos:</p>
+        <table width="100%">
+          <tr>
+            <th>Verbo</th>
+            <th>Ruta</th>
+            <th>Acción</th>
+            <th>Nombre de ruta</th>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>/usuarios</td>
+            <td>index</td>
+            <td>usuarios.index</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>/usuarios/create</td>
+            <td>create</td>
+            <td>usuarios.create</td>
+          </tr>
+          <tr>
+            <td>POST</td>
+            <td>/usuarios</td>
+            <td>store</td>
+            <td>usuarios.store</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>/usuarios/{id}</td>
+            <td>show</td>
+            <td>usuarios.show</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>/usuarios/{id}/edit</td>
+            <td>edit</td>
+            <td>usuarios.edit</td>
+          </tr>
+          <tr>
+            <td>PUT</td>
+            <td>/usuarios/{id]</td>
+            <td>update</td>
+            <td>usuarios.update</td>
+          </tr>
+          <tr>
+            <td>DELETE</td>
+            <td>/usuarios/{id}</td>
+            <td>destroy</td>
+            <td>usuarios.destroy</td>
+          </tr>
+        </table>
+      </section>
+      <section>
+        <h2>Controladores</h2>
+        <p>Se pueden generar controladores que implementan las acciones RESTful:</p>
+        <pre>
+            <code>php artisan controller:make UsuariosController</code>
+          </pre>
+      </section>
+      <section>
+        <h2>Vistas</h2>
+        <p>Laravel usa blade como motor de plantillas.</p>
+        <p>Las vistas se ubican en el directorio app/views.</p>
+        <p>Ejemplo, usaremos default.blade.php como plantilla layout y el contenido lo pondremos en index.blade.php:</p>
+        <pre>
+          default.blade.php
+          <code>
+          &lt;html&gt;
+            &lt;body&gt;
+              &lt;h1&gt;Ejemplo Layout&lt;/h1&gt;
+              @yield('contenido')
+            &lt;/body&gt;
+          &lt;/html&gt;
+
+          </code>
+          </pre>
+        <pre>
+          index.blade.php
+          <code>
+          @extends('default')
+          @section('contenido')
+            Este es el contenido
+          @stop
+          </code>
+          </pre>
+      </section>
+
+      <section>
+        <h2>Modelos</h2>
+        <p>Laravel usa Eloquent ORM, una implementación de ActiveRecord.</p>
+        <pre><code>
+        class Usuario extends Eloquent {
+          protected $table = 'usuarios';
+
+          public function direccion() {
+            return $this->hasOne('Direccion');
+          }
+        }
+        </code></pre>
+        <p>Ejemplos de consultas:</p>
+        <pre>Obtener todos los registros<code>
+        $usuarios = Usuario::all();
+        </code></pre>
+        <pre>Obtiene el registro con el id 1<code>
+        $usuario = Usuario::find(1);
+        </code></pre>
+        <pre>Obtiene todos los registros con el nombre = juanito<code>
+        $usuarios = Usuario::where('nombre', 'juanito')->get();
+        </code>
+        </pre>
+      </section>
+
+      <section>
+        <h2>Ejemplo</h2>
+        <pre>app/routes.php<code>
+          Route::resource('usuarios', 'UsuariosController');
+        </code></pre>
+        <pre>app/controllers/UsuariosController.php<code>
+         class UsuariosController extends \BaseController {
+           public function index() {
+             $usuarios = Usuario::all();
+             return View::make('usuarios.index', array('usuarios' => $usuarios));
+           }
+         }
+         </code></pre>
+      </section>
+      <section>
+        <pre>
+          app/views/layouts/default.blade.php
+          <code>
+          &lt;html&gt;
+            &lt;body&gt;
+              &lt;h1&gt;Ejemplo Layout&lt;/h1&gt;
+              @yield('contenido')
+            &lt;/body&gt;
+          &lt;/html&gt;
+          </code>
+          </pre>
+        <pre>
+          app/views/usuarios/index.blade.php
+          <code>
+          @extends('layouts.default')
+          @section('contenido')
+            <div>Listado</div>
+            @foreach($usuarios as $usuario)
+            <span>{{ $usuario->nombre }}</span>
+            @endforeach
+          @stop
+          </code>
+          </pre>
+      </section>
+      <section>
+        <pre>app/models/Usuario.php<code>
+          class Usuario extends \Eloquent {
+            protected $table = 'usuarios';
+            protected $fillable = ["nombre", "email"];
+          }
+          </code>
+          </pre>
+      </section>
+      <section>
+        <h1>FIN</h1>
+      </section>
+
+
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

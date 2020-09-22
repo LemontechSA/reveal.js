@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Monitoring - Lemontech</title>
+  <meta name="description" content="Presentación sobre monitoreo para Lemontech">
+  <meta name="author" content="Pablo Alcantar <palcantar@lemontech.com>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>Monitoring</h1>
+      </section>
+
+      <section>
+        <h2>¿Por qué importa?</h2>
+
+        <ul>
+          <li>Saber que ocurre: tanto a nivel de aplicación como de servidores</li>
+          <li>Reacción Proactiva</li>
+          <li>Tener información histórica</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Graphite</h1>
+        <p><a href="http://graphite.wikidot.com/">http://graphite.wikidot.com/</a></p>
+        <p><a href="https://graphite.readthedocs.org/en/latest/">Documentation</a></p>
+      </section>
+
+      <section>
+        <img src="../img/monitoring/graphite-example.png" alt="Graphite Example">
+      </section>
+
+      <section>
+        <h2>Graphite Architecture</h2>
+        <ul>
+          <li><strong>Whisper</strong>: Base de datos para guardar series de tiempo</li>
+          <li><strong>Carbon</strong>: demonio programador en Twisted (python) que lee datos de series de tiempo</li>
+          <li><strong>Graphite webapp</strong>: Aplicación DJango para generación de gráficos usando Cairo</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Collectd</h1>
+        <p><a href="https://collectd.org/">https://collectd.org/</a></p>
+      </section>
+
+      <section>
+        <h2>Collectd</h2>
+        <ul>
+          <li>Recolecta datos sobre el host en el que corre (CPU, RAM, Disks, services - nginx, memcached, etc-)</li>
+          <li>Instalación per-host:
+            <pre>
+<code class="prompt">
+$ apt-get install collect
+$ $EDITOR /etc/collectd.conf
+$ /etc/init.d/collectd start
+
+</code>
+              </pre>
+          </li>
+          <li>Por defecto utiliza RDD como base de datos</li>
+          <li>
+            PERO! <strong>existe un Plugin de integración con graphite :D</strong>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Grafana</h1>
+        <p><a href="http://grafana.org/">http://grafana.org/</a></p>
+        <ul>
+          <li>Graphite es excelente generando gráficos...</li>
+          <li>... pero no son más sexies los Dashboards?</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Grafana</h2>
+        <img src="../img/monitoring/grafana.png" alt="">
+      </section>
+
+      <section>
+        <h2>Grafana</h2>
+        <ul>
+          <li>Inspirado en los dashboard que genera el proyecto <a
+              href="http://www.elasticsearch.org/overview/kibana/">Kibana</a></li>
+          <li>Permite tener N cantidad de dashboards</li>
+          <li>Se integra por defecto con graphite (y algunos otros)</li>
+          <li><strong>Sexy!</strong></li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>StatsD</h1>
+        <p><a href="https://github.com/etsy/statsd/">https://github.com/etsy/statsd/</a></p>
+      </section>
+
+      <section>
+        <h2>StatsD</h2>
+        <ul>
+          <li>Demonio creado por <a href="http://www.etsy.com/">Etsy</a> para monitorear sus aplicaciones</li>
+          <li>
+            <p>3 tipos de métricas</p>
+            <ul>
+              <li>Timers</li>
+              <li>Gauges</li>
+              <li>Counters</li>
+            </ul>
+          </li>
+          <li>Integración por defecto con Graphite</li>
+          <li>again... <strong>SEXY!</strong></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>StatsD</h2>
+        <ul>
+          <li>
+            <p>API simple para pushear métricas</p>
+            <pre>
+<code style="text-align:center"  class="prompt">
+Gauge: metric_name:333|g
+Gauge: metric_name:+4|g
+Gauge: metric_name:-100|g
+Timer: timer_name:300|ms
+Counter: counter_name:1|c
+
+Sampling: metric_name:value|@rate
+
+</code>
+</pre>
+          </li>
+          <li>Sobre UDP => (casi) No genera carga en la aplicación</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>StatsD</h2>
+        <ul>
+          <li>Múltiples clientes para la mayoría de los lenguajes de programación</li>
+          <li>
+            <p>Ruby (<a href="https://github.com/github/statsd-ruby">https://github.com/github/statsd-ruby</a>):</p>
+            <pre><code class="prompt">$ gem install statsd-ruby</code></pre>
+            <p>A Nivel de Aplicación:</p>
+            <pre>
+<code class="ruby">
+statsd = Statsd.new '127.0.0.1', 8125 #8125 is the default statsd port
+statsd.increment('users.signup')
+
+</code>
+</pre>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>StatsD</h2>
+        <ul>
+          <li>Múltiples clientes para la mayoría de los lenguajes de programación</li>
+          <li>
+            <p>PHP (<a href="https://github.com/domnikl/statsd-php">https://github.com/domnikl/statsd-php</a>):</p>
+            <pre><code>
+Composer:
+{
+    "require": {
+        "domnikl/statsd": "~2.0"
+    }
+}</code></pre>
+            <p>A Nivel de Aplicación:</p>
+            <pre>
+<code class="php">
+&lt;?php
+$connection = new \Domnikl\Statsd\Connection\UdpSocket('localhost', 8125);
+$statsd = new \Domnikl\Statsd\Client($connection, "test.namespace");
+
+// the global namespace is prepended to every key (optional)
+$statsd->setNamespace("test");
+
+// simple counts
+$statsd->increment("foo.bar");
+$statsd->decrement("foo.bar");
+$statsd->count("foo.bar", 1000);
+$statsd->timing("foo.bar", 320);
+
+</code>
+</pre>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Logster</h1>
+        <p><a href="https://github.com/etsy/logster">https://github.com/etsy/logster</a></p>
+      </section>
+
+      <section>
+        <h2>Logster</h2>
+
+        <ul>
+          <li>Parser de logs, para generar métricas a partir de este</li>
+          <li>
+            <pre><code>
+$ pip install pygtail
+$ sudo /usr/bin/logster --dry-run --output=graphite \
+  --graphite-host=graphite.example.com:2003 SampleLogster \
+   /var/log/httpd/access_log
+
+              </code></pre>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Logster</h2>
+        <img src="../img/monitoring/logster.png" alt="Logster">
+      </section>
+
+      <section>
+        <h2>Bibliografía</h2>
+        <ul>
+          <li><a
+              href="http://cdn.oreillystatic.com/en/assets/1/event/65/Metrics-driven%20Engineering%20at%20Etsy%20Presentation.pdf">http://cdn.oreillystatic.com/en/assets/1/event/65/Metrics-driven%20Engineering%20at%20Etsy%20Presentation.pdf</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>FIN</h1>
+      </section>
+
+
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

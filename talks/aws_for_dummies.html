@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>AWS For Dummies</title>
+  <meta name="description" content="">
+  <meta name="author" content="Pablo Alcantar <palcantar@lemontech.com>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../dist/reset.css">
+  <link rel="stylesheet" href="../dist/reveal.css">
+  <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+  <style type="text/css">
+    body {
+      background: none;
+    }
+
+    .lemon {
+      color: #F0322C;
+    }
+
+    .big {
+      font-size: 1.4em !important;
+    }
+
+    .reveal .progress span {
+      background: #F0322C;
+    }
+
+    .reveal .controls div.navigate-right,
+    .reveal .controls div.navigate-right.enabled {
+      border-left-color: #F0322C;
+    }
+
+    .reveal .controls div.navigate-left,
+    .reveal .controls div.navigate-left.enabled {
+      border-right-color: #F0322C;
+    }
+
+    .reveal h2 {
+      color: #34474E;
+    }
+  </style>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>AWS For Dummies <br>:B</h1>
+        <img src="../img/aws_for_dummies/afd.jpg" alt="AWS for Dummies :B">
+      </section>
+
+      <section>
+        <p>Esta presentación es posible gracias al generoso auspicio de:</p>
+        <img src="../img/5rabbits-logo.png" style="border: none; background: none; box-shadow: none" />
+        <blockquote>Crafting Products wih Joy</blockquote>
+      </section>
+
+      <section>
+        <h1>Cloud Computing</h1>
+        <blockquote cite="https://es.wikipedia.org/wiki/Computación_en_la_nube">Paradigma que permite ofrecer servicios
+          de computación a través de internet</blockquote>
+      </section>
+
+      <section>
+        <h2>Cloud Computing</h2>
+        <h3>Características</h3>
+
+        <ul>
+          <li>Eficiencia en el uso de los recursos</li>
+          <li>Economías de escala</li>
+          <li>Escalabilidad y Elasticidad</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>IaaS / PaaS</h1>
+      </section>
+
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <td>
+                <h3>IasS</h3>
+              </td>
+              <td>
+                <h3>PaaS</h3>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Infrastructura as a Service</td>
+              <td>Plataform as a Service</td>
+            </tr>
+            <tr>
+              <td>Ej: Amazon EC2, Windows Azure, Google Compute Engine, Rackspace</td>
+              <td>Ej: AWS ElasticBeanstalk, Heroku, Google App Engine, Windows Azure</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h1>AWS</h1>
+        <h2>Amazon Web Services</h2>
+      </section>
+
+      <section>
+        <h2>Datos Generales</h2>
+        <ul>
+          <li>Lanzamiento Oficial 2006</li>
+          <li>Conjunto de servicios interconectados</li>
+          <li>Acceso a los servicios a través de HTTP (REST y/o SOAP)</li>
+          <li>Pagas por lo que usas</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tipos de Servicios</h2>
+        <ul>
+          <li>Compute</li>
+          <li>Storage &amp; Content Delivery</li>
+          <li>Database</li>
+          <li>Networking</li>
+          <li>Application Services</li>
+          <li>Administration &amp; Security</li>
+          <li>Deployment &amp; Management</li>
+          <li>Analytics</li>
+          <li>Mobile Services</li>
+          <li>Enterprise Applications</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Servicios más comunes</h2>
+        <ul>
+          <li>EC2: Elastic Cloud Computing</li>
+          <li>Route53</li>
+          <li>ELB: Elastic Load Balancer</li>
+          <li>RDS: Relational Database Service</li>
+          <li>ElasticCache</li>
+          <li>SES: Simple Email Service</li>
+          <li>DynamoDB</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Servicios Interesantes</h2>
+        <ul>
+          <li>Lambda</li>
+          <li>EC2 Container Service</li>
+          <li>Mechanical Turk</li>
+          <li>Machine Learning</li>
+          <li>CloudSearch</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>¿Cómo "%·#$$!! hago funcionar todo esto?</h1>
+      </section>
+
+      <section>
+        <h2>Conceptos</h2>
+        <ul>
+          <li>Región: Distribuidas a través del mundo</li>
+          <li>Zone: Distribuida dentro de una zona</li>
+          <li>AMI: Amazon Machine Images</li>
+          <li>EBS: Elastic Block Store</li>
+          <li>EIP: Elastic IP</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Uniendo los cabos: Tipica infraestructura</h2>
+        <img style="max-width:70%" src="../img/aws_for_dummies/pic2.jpg" alt="">
+      </section>
+
+      <section>
+        <h1>¿Dónde alojo mi página web?</h1>
+      </section>
+
+      <section>
+        <h2>EC2</h2>
+        <ul>
+          <li>Arriendo de servidores virtuales</li>
+          <li>Muchos sabores a escoger: Linux (en todos los colores), Windows (¿vale la pena algún color?)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>... Y mis Bases de Datos?</h1>
+      </section>
+
+      <section>
+        <h2>RDS to the rescue!</h2>
+        <ul>
+          <li>The Classics: MySQL, Postgres, Oracle, SQL Server</li>
+          <li>Amazon Aurora: Cluster de MySQL *.*</li>
+          <li>Principalmente gestionado por ellos</li>
+          <li>Multi A-Z</li>
+
+        </ul>
+      </section>
+
+      <section>
+        <h2>Soy súper famoso, y un solo servidor para mi aplicación no se la puede...</h2>
+        <h1>¿que hago?</h1>
+      </section>
+
+      <section>
+        <h2>EC2 + ELB</h2>
+        <h3>Levanta N instancias de tu server de página web y colócalas detrás de un Balanceador</h3>
+      </section>
+
+      <section>
+        <h2>Genial! pero ahora mis seguidores cuando inician sesión, de la nada se desloguean</h2>
+        <h2>Esto no es tan lindo como pensaba</h2>
+      </section>
+
+      <section>
+        <h2>ElasticCache</h2>
+        <ul>
+          <li>Podrías guardar las sesiones en tu DB Relacional... </li>
+          <li>Pero... en alta demanda, mucha query</li>
+          <li>Mejor usemos un repositorio de datos rápido</li>
+          <li>Redis o Memcached</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Igual tener N servidores durante TOOOOODO el día me sale carito</h2>
+        <h1>¿Como procedo?</h1>
+      </section>
+
+      <section>
+        <h1>AutoScaling + CloudWatch</h1>
+        <ul>
+          <li>Registra alertas en base a tus servidores</li>
+          <li>Si se sobrepasa cierto umbral...</li>
+          <li>... AutoScaling reaccionará</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>OSOM!</h1>
+        <h2>Pero si los servers se están apagando y prendiendo solos...</h2>
+        <h2>Las fotos que me envían mis fans ¿Las perdería? ¿Donde las dejo?</h2>
+      </section>
+
+      <section>
+        <h1>S3 + CloudFront</h1>
+      </section>
+
+      <section>
+        <h2>Eres seco Pablo!</h2>
+      </section>
+
+      <section>
+        <h1>:$</h1>
+      </section>
+
+      <section>
+        <h2>Necesito enviar algunos emails también...</h2>
+        <h1>AWS me ayuda?</h1>
+      </section>
+
+      <section>
+        <h2>Configura tu cuenta de SES y elige como quieres enviar los mails</h2>
+        <h2>Si utilizando un server SMTP o directamente con la API</h2>
+      </section>
+
+      <section>
+        <h2>Gracias Pablo! Ahora soy un mejor Programador</h2>
+        <img src="../img/aws_for_dummies/programador.jpg" alt="">
+      </section>
+
+      <section>
+        <h1>AHORA SOY...</h1>
+      </section>
+
+      <section>
+        <h1>FULL STACK!</h1>
+      </section>
+
+      <section>
+        <img src="../img/aws_for_dummies/thumbsup.jpg" alt="">
+      </section>
+
+      <section>
+        <h1>( P A U S A )</h1>
+      </section>
+
+      <section>
+        <h2>Servicios Interesantes</h2>
+        <ul>
+          <li>Lambda</li>
+          <li>EC2 Container Service</li>
+          <li>Mechanical Turk</li>
+          <li>Machine Learning</li>
+          <li>CloudSearch</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>(por) FIN!</h1>
+        <img src="../img/5rabbits-logo.png" style="border: none; background: none; box-shadow: none" />
+        <blockquote>Crafting Products wih Joy</blockquote>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
